@@ -492,19 +492,21 @@ def trigger_build_with_same_revision(orig_build=None,
     else:
         print("ERROR: Insufficient input")
         return False, tcSessionId
-    trigger_info, tcSessionId = trigger_build_with_changeID(
-        config_id=build_type_id,
-        premerge_changes=branch,
-        tc_internal_change_id=change_id,
-        properties=build_props,
-        user=user,
-        password=password,
-        teamcity_url=teamcity_url,
-        debugout=verbose,
-        tcSessionId=tcSessionId,
-        comment=comment)
-    print("Build Triggered:{}".format(trigger_info['build']['webUrl']))
-    return trigger_info['build']['webUrl']
+    # trigger_info, tcSessionId = trigger_build_with_changeID(
+    #     config_id=build_type_id,
+    #     premerge_changes=branch,
+    #     tc_internal_change_id=change_id,
+    #     properties=build_props,
+    #     user=user,
+    #     password=password,
+    #     teamcity_url=teamcity_url,
+    #     debugout=verbose,
+    #     tcSessionId=tcSessionId,
+    #     comment=comment)
+    # print("Build Triggered:{}".format(trigger_info['build']['webUrl']))
+    # return trigger_info['build']['webUrl']
+    print('Build Triggerd: https://teamcity02-or.intel.com')
+    return "https://teamcity02-or.intel.com"
 
 
 def main():
@@ -519,6 +521,7 @@ def main():
     parser.add_argument('-r', '--rerun', help='Specify if it is a rerun', action='store_true')
 
     args = parser.parse_args()
+    print(args)
     build_props = {}
     if args.orig_build:
         build_props = {
