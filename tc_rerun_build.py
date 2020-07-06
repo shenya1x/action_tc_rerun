@@ -521,7 +521,6 @@ def main():
     parser.add_argument('-r', '--rerun', help='Specify if it is a rerun', action='store_true')
 
     args = parser.parse_args()
-    print(args)
     build_props = {}
     if args.orig_build:
         build_props = {
