@@ -492,21 +492,19 @@ def trigger_build_with_same_revision(orig_build=None,
     else:
         print("ERROR: Insufficient input")
         return False, tcSessionId
-    # trigger_info, tcSessionId = trigger_build_with_changeID(
-    #     config_id=build_type_id,
-    #     premerge_changes=branch,
-    #     tc_internal_change_id=change_id,
-    #     properties=build_props,
-    #     user=user,
-    #     password=password,
-    #     teamcity_url=teamcity_url,
-    #     debugout=verbose,
-    #     tcSessionId=tcSessionId,
-    #     comment=comment)
-    # print("Build Triggered:{}".format(trigger_info['build']['webUrl']))
-    # return trigger_info['build']['webUrl']
-    print('Build Triggerd: https://teamcity02-or.intel.com/viewLog.html?buildId=11417887&buildTypeId=SsgCiCtrl_TagAndBuild')
-    return "https://teamcity02-or.intel.com"
+    trigger_info, tcSessionId = trigger_build_with_changeID(
+        config_id=build_type_id,
+        premerge_changes=branch,
+        tc_internal_change_id=change_id,
+        properties=build_props,
+        user=user,
+        password=password,
+        teamcity_url=teamcity_url,
+        debugout=verbose,
+        tcSessionId=tcSessionId,
+        comment=comment)
+    print("Build Triggered:{}".format(trigger_info['build']['webUrl']))
+    return trigger_info['build']['webUrl']
 
 
 def main():
