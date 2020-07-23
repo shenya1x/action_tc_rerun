@@ -469,7 +469,8 @@ def trigger_build_with_same_revision(orig_build=None,
                                                     debugout=verbose,
                                                     tcSessionId=tcSessionId)
             if output:
-                build_type_id = output.get('buildTypeId')
+                if not build_type_id:
+                    build_type_id = output.get('buildTypeId')
                 branch = output.get('branchName')
                 state = output.get('state')
                 change_ids = [x.get('id') for x in output.get('lastChanges', {}).get('change', [])]
