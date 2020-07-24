@@ -518,6 +518,7 @@ def main():
     parser.add_argument('-b', '--build_type_id', help='Build Type ID', default="")
     parser.add_argument('-op', '--other_param', help='Other Params in format "key=value;key=value"', default="")
     parser.add_argument('-r', '--rerun', help='Specify if it is a rerun', action='store_true')
+    parser.add_argument('-va', '--validation', help='for test', action='store_true')
 
     args = parser.parse_args()
     build_props = {}
@@ -532,6 +533,12 @@ def main():
         key = kv.split("=")[0]
         val = kv.split("=")[1]
         build_props[key] = val
+
+    if args.validation:
+        if args.build_type_id != 'SsgCiCtrl_ReviewBuildsTestAkshayRerun':
+            args.build_type_id = "SsgCiCtrl_ReviewBuildsTestAkshayRerun"
+            print('{} skipped'.format(args.build_type_id))
+            return
 
     trigger_build_with_same_revision(orig_build=args.orig_build,
                                      verbose=args.verbose,
