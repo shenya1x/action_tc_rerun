@@ -1,3 +1,4 @@
+import sys
 import argparse
 import xml.etree.ElementTree as ET
 from collections import defaultdict
@@ -536,8 +537,9 @@ def main():
 
     if args.validation:
         if args.build_type_id != 'SsgCiCtrl_ReviewBuildsTestAkshayRerun':
-            args.build_type_id = "SsgCiCtrl_ReviewBuildsTestAkshayRerun"
             print('{} skipped'.format(args.build_type_id))
+            args.build_type_id = "SsgCiCtrl_ReviewBuildsTestAkshayRerun"
+            sys.exit(-1)
             return
 
     trigger_build_with_same_revision(orig_build=args.orig_build,
